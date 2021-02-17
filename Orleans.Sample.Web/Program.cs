@@ -3,7 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using Orleans.Providers;
 using Orleans.Sample.Web.Grains;
+using Orleans.Streams;
 using System;
 using System.Linq;
 using System.Net;
@@ -33,6 +35,8 @@ namespace Orleans.Sample.Web
                         .First(a => a.AddressFamily == AddressFamily.InterNetwork));
                     x.UseLocalhostClustering();
                     x.AddMemoryGrainStorageAsDefault();
+                    x.AddMemoryStreams<DefaultMemoryMessageBodySerializer>("Stream",
+                        o => o.ConfigureStreamPubSub(StreamPubSubType.ImplicitOnly));
                     x.UseConsulClustering(o =>
                         o.Address = new Uri(ctx.Configuration.GetValue<string>("Orleans:Consul:Address")));
                     x.ConfigureApplicationParts(parts =>
