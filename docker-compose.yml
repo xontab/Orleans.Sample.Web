@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  app:
+  silo1:
     image: ${DOCKER_REGISTRY-}orleans-sample-web
     build:
       context: .
@@ -15,7 +15,7 @@ services:
       - "5000:8080"
     restart: on-failure
 
-  app2:
+  silo2:
     image: ${DOCKER_REGISTRY-}orleans-sample-web
     build:
       context: .

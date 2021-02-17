@@ -1,0 +1,14 @@
+@startuml
+title Component Diagram
+interface HTTP
+
+node "Orleans Cluster" {
+  HTTP - [Silo 1]
+  [Silo 1] - [Silo 2]
+  [Silo 1] --> Consul
+  [Silo 2] --> Consul
+}
+
+database "Consul" {
+}
+@enduml

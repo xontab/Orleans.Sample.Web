@@ -1,9 +1,19 @@
 # Orleans.Sample.Web
 
+## Architecture
+
+![Component Diagram](./docs/component.png)
+
+
+## Technologies Used:
+* [Orleans - Actor Model](https://github.com/dotnet/orleans)
+* [Consul - Service Discovery](https://github.com/hashicorp/consul)
+
+
 ## Build and Run
 
 ```
-docker-compose up
+docker-compose up --build
 ```
 
 ## How to test
