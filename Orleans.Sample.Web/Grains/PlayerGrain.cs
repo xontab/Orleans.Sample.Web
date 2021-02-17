@@ -9,18 +9,18 @@ namespace Orleans.Sample.Web.Grains
     
     public interface IPlayerGrain : IGrainWithGuidKey
     {
-        Task CreatePlayerAsync(string name);
+        Task UpdatePlayerAsync(string name);
         
         Task<string> GetPlayerAsync();
     }
     
     public class PlayerGrain : Grain<PlayerState>, IPlayerGrain
     {
-        public async Task CreatePlayerAsync(string name)
+        public async Task UpdatePlayerAsync(string name)
         {
-            await Task.Delay(100);
-
             State.Name = name;
+
+            await WriteStateAsync();
         }
 
         public Task<string> GetPlayerAsync()

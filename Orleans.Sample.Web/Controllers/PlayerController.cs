@@ -27,7 +27,7 @@ namespace Orleans.Sample.Web.Controllers
         {
             var id = Guid.NewGuid();
             
-            await _clusterClient.GetGrain<IPlayerGrain>(id).CreatePlayerAsync(name);
+            await _clusterClient.GetGrain<IPlayerGrain>(id).UpdatePlayerAsync(name);
             
             return id;
         }  
