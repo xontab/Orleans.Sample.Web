@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}orleans-sample-web
     build:
       context: .
-      dockerfile: Orleans.Sample.Web/Dockerfile
+      dockerfile: src/Orleans.Sample.Web/Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - Orleans__Consul__Address=http://consul:8500
@@ -19,7 +19,7 @@ services:
     image: ${DOCKER_REGISTRY-}orleans-sample-web
     build:
       context: .
-      dockerfile: Orleans.Sample.Web/Dockerfile
+      dockerfile: src/Orleans.Sample.Web/Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - Orleans__Consul__Address=http://consul:8500
