@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Orleans.Sample.Web.Models;
 using Orleans.Streams;
 using System;
 using System.Threading.Tasks;

@@ -1,3 +1,4 @@
+using Orleans.Sample.Web.Models;
 using Orleans.Streams;
 using System.Threading.Tasks;
 

@@ -1,4 +1,4 @@
-namespace Orleans.Sample.Web
+namespace Orleans.Sample.Web.Models
 {
     public class PlayerUpdated
     {
