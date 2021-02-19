@@ -19,7 +19,11 @@ namespace Orleans.Sample.Web.Filters
             var tracer = _oneAgentSdk.TraceOutgoingMessage(
                 _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context.Grain.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
                     ""));
-            tracer.SetCorrelationId(RequestContext.ActivityId.ToString());
+
+            if (RequestContext.Get("TraceId") != null)
+            {
+                tracer.SetCorrelationId(RequestContext.Get("TraceId").ToString());
+            }
 
             await tracer.TraceAsync(async () => { await context.Invoke(); });
         }
@@ -29,7 +33,11 @@ namespace Orleans.Sample.Web.Filters
             var tracer = _oneAgentSdk.TraceIncomingMessageProcess(
                 _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context.Grain.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
                     ""));
-            tracer.SetCorrelationId(RequestContext.ActivityId.ToString());
+
+            if (RequestContext.Get("TraceId") != null)
+            {
+                tracer.SetCorrelationId(RequestContext.Get("TraceId").ToString());
+            }
 
             await tracer.TraceAsync(async () => { await context.Invoke(); });
         }
