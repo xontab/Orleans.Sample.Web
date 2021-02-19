@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dynatrace.OneAgent.Sdk" Version="1.7.1" />
     <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="3.4.1" />
     <PackageReference Include="Microsoft.Orleans.Server" Version="3.4.1" />
     <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.4.1" PrivateAssets="all">
