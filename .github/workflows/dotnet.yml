@@ -22,13 +22,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Publish for Windows
-      run: dotnet publish -r win-x64 --self-contained
+      run: dotnet publish --no-build -r win-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
         name: Orleans.Sample.Web-win-x64
         path: src/Orleans.Sample.Web/bin/Debug/net5.0/win-x64/publish
     - name: Publish for Linux
-      run: dotnet publish -r linux-x64 --self-contained
+      run: dotnet publish --no-build -r linux-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
         name: Orleans.Sample.Web-linux-x64
