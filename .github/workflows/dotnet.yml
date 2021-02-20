@@ -2,7 +2,6 @@ name: .NET
 
 on:
   push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -17,19 +16,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
     - name: Publish for Windows
       run: dotnet publish -r win-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
-        name: Orleans.Sample.Web-win-x64
+        name: Orleans.Sample.Web-${{ github.head_ref }}-win-x64
         path: src/Orleans.Sample.Web/bin/Debug/net5.0/win-x64/publish
     - name: Publish for Linux
       run: dotnet publish -r linux-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
-        name: Orleans.Sample.Web-linux-x64
+        name: Orleans.Sample.Web-${{ github.head_ref }}-linux-x64
         path: src/Orleans.Sample.Web/bin/Debug/net5.0/linux-x64/publish
