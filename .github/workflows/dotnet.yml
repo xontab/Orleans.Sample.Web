@@ -20,11 +20,11 @@ jobs:
       run: dotnet publish -r win-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
-        name: Orleans.Sample.Web-${{ github.head_ref }}-win-x64
+        name: win-x64-Orleans.Sample.Web
         path: src/Orleans.Sample.Web/bin/Debug/net5.0/win-x64/publish
     - name: Publish for Linux
       run: dotnet publish -r linux-x64 --self-contained
     - uses: actions/upload-artifact@v2
       with:
-        name: Orleans.Sample.Web-${{ github.head_ref }}-linux-x64
+        name: linux-x64-Orleans.Sample.Web
         path: src/Orleans.Sample.Web/bin/Debug/net5.0/linux-x64/publish
