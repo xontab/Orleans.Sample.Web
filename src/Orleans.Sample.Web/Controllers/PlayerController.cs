@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Orleans.Runtime;
 using Orleans.Sample.Web.Grains;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Orleans.Sample.Web.Controllers
@@ -19,6 +21,8 @@ namespace Orleans.Sample.Web.Controllers
         [HttpGet("{id}")]
         public async Task<string> Get(Guid id)
         {
+            RequestContext.Set("TraceId", Activity.Current.TraceId);
+
             return await _clusterClient.GetGrain<IPlayerGrain>(id).GetPlayerAsync();
         }  
         
@@ -27,6 +31,8 @@ namespace Orleans.Sample.Web.Controllers
         {
             var id = Guid.NewGuid();
             
+            RequestContext.Set("TraceId", Activity.Current.TraceId);
+
             await _clusterClient.GetGrain<IPlayerGrain>(id).UpdatePlayerAsync(name);
             
             return id;

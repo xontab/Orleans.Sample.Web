@@ -1,0 +1,22 @@
+@startuml
+title Create Player
+
+participant Client              as Client
+boundary    Controller          as Controller
+entity      "Player Grain"      as Player
+database    "Player State"      as State
+queue       "Memory Streams"    as Streams
+entity      "Audit Grain"       as Audit
+
+Client -> Controller : POST /players?name={name}
+Controller -> Player : Activate Grain
+Player -> State : Set Player State
+Player -> Streams : <<PlayerUpdated>> Event
+Player --> Controller : Returns Player Id
+Controller --> Client : Returns Player Id
+...
+Streams -> Audit : Activate Audit Grain
+Streams -> Audit : Consumes <<PlayerUpdated>>
+Audit -> Audit : Console log <<PlayerUpdated>>
+
+@enduml

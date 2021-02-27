@@ -4,11 +4,14 @@
 
 ![Component Diagram](./docs/component.png)
 
+### Sequence Diagrams
+
+* [Create Player](./docs/create-player.png)
+* [Get Player](./docs/get-player.png)
 
 ## Technologies Used:
 * [Orleans - Actor Model](https://github.com/dotnet/orleans)
 * [Consul - Service Discovery](https://github.com/hashicorp/consul)
-
 
 ## Build and Run
 

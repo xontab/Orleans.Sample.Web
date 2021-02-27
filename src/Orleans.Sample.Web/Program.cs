@@ -4,6 +4,7 @@ using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Providers;
 using Orleans.Sample.Web.Extensions;
+using Orleans.Sample.Web.Filters;
 using Orleans.Sample.Web.Grains;
 using Orleans.Streams;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Net.Sockets;
 
 namespace Orleans.Sample.Web
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -37,6 +38,8 @@ namespace Orleans.Sample.Web
                     x.AddMemoryStreams<DefaultMemoryMessageBodySerializer>("Stream",
                         o => o.ConfigureStreamPubSub(StreamPubSubType.ImplicitOnly));
                     x.UseClustering(ctx.Configuration);
+                    x.AddIncomingGrainCallFilter<TraceGrainCallFilter>();
+                    x.AddOutgoingGrainCallFilter<TraceGrainCallFilter>();
                     x.ConfigureApplicationParts(parts =>
                         parts.AddApplicationPart(typeof(PlayerGrain).Assembly).WithReferences());
                 });
