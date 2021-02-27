@@ -39,7 +39,7 @@ namespace Orleans.Sample.Web.Grains
 
         public Task OnNextAsync(PlayerUpdated item, StreamSequenceToken token = null)
         {
-            _logger.LogInformation("Player {name} updated at {date}", item.Name, DateTime.UtcNow);
+            _logger.LogInformation("Player {name} updated at {date}", item?.Name, DateTime.UtcNow);
             
             DeactivateOnIdle();
             

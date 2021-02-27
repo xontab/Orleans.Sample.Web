@@ -17,7 +17,7 @@ namespace Orleans.Sample.Web.Filters
         public async Task Invoke(IOutgoingGrainCallContext context)
         {
             var tracer = _oneAgentSdk.TraceOutgoingMessage(
-                _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context.Grain.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
+                _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context?.Grain?.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
                     ""));
 
             if (RequestContext.Get("TraceId") != null)
@@ -31,7 +31,7 @@ namespace Orleans.Sample.Web.Filters
         public async Task Invoke(IIncomingGrainCallContext context)
         {
             var tracer = _oneAgentSdk.TraceIncomingMessageProcess(
-                _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context.Grain.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
+                _oneAgentSdk.CreateMessagingSystemInfo("Orleans", context?.Grain?.ToString(), MessageDestinationType.QUEUE, ChannelType.IN_PROCESS,
                     ""));
 
             if (RequestContext.Get("TraceId") != null)

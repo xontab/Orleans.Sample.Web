@@ -1,0 +1,15 @@
+@startuml
+title Get Player
+
+participant Client              as Client
+boundary    Controller          as Controller
+entity      "Player Grain"      as Player
+database    "Player State"      as State
+
+Client -> Controller : GET /players/{id}
+Controller -> Player : Activate Grain (if not activated)
+State -> Player : Read Player State
+Player --> Controller : Returns Player Name
+Controller --> Client : Returns Player Name
+
+@enduml
